@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="org.dgl.win98labyrinth.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:org.dgl.win98labyrinth"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Win98Labirinto">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <MenuItem Text="Nuova Partita"
+              Clicked="MenuItemNew_Clicked"/>
+
+</Shell>

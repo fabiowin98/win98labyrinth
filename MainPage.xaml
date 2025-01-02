@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="org.dgl.win98labyrinth.MainPage">
+
+    <!-- Struttura della pagina: intestazione, corpo, fondo pagina. Il corpo occupa la maggior parte dello schermo.-->
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- intestazione: nome del giocatore e comando per passare il turno. Aggiornato dalla funzione RefreshHeader()-->
+        <Grid RowDefinitions="*" ColumnDefinitions="3*,*" Grid.Row="0">
+            <Label Grid.Column="0" x:Name="GameHeaderLabel" HorizontalTextAlignment="Start" Text="NOME" FontAttributes="Bold" Padding="10" />
+            <Button Grid.Column="1" x:Name="GameHeaderButton" Text="Fine Turno" IsEnabled="false" Clicked="GameHeaderButton_Clicked"/>
+        </Grid>
+        <!-- Tabellone. Viene popolato dinamicamente dal codice C# -->
+        <Grid RowDefinitions="*" Grid.Row="1" BackgroundColor="LightBlue" Padding="10">
+            <Grid x:Name="GameBoardGrid" RowDefinitions="*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*">
+                <!-- popolato dinamicamente dalla funzione RefreshGrid() -->
+            </Grid>
+        </Grid>
+        <!-- fondo pagina: obiettivo attuale e numero degli obiettivi rimanenti. Aggiornato dalla funzione RefreshFooter()-->
+        <Grid ColumnDefinitions="*,*,*,*" Grid.Row="2" BackgroundColor="Salmon" Padding="10">
+            <Label Grid.Column="0" Text="Obiettivo:" HorizontalTextAlignment="End"/>
+            <Label Grid.Column="1" x:Name="GameFooterActual" Text="CARTA" HorizontalTextAlignment="Center" FontSize="32"/>
+            <Label Grid.Column="2" Text="Rimanenti:" HorizontalTextAlignment="End"/>
+            <Label Grid.Column="3" x:Name="GameFooterRemaining" Text="CARTE..." HorizontalTextAlignment="Center" FontSize="32"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>
