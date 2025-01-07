@@ -116,7 +116,7 @@ namespace org.dgl.win98labyrinth
                     }
                     //tessera di partenza giocatore
                     homeRectangle = null;
-                    if(_game.GetPlayerByStartPosition(y,x) is GamePlayer pp)
+                    if (_game.GetPlayerByStartPosition(y, x) is GamePlayer pp)
                     {
                         homeRectangle = CreatePlayerHomeRectangle(pp);
                     }
@@ -194,12 +194,12 @@ namespace org.dgl.win98labyrinth
             return output;
         }
 
-        
 
-    /// <summary>
-    /// assegna gli eventi TAP e DRAGDROP agli elementi grafici
-    /// </summary>
-    private void RefreshGridAddGestures()
+
+        /// <summary>
+        /// assegna gli eventi TAP e DRAGDROP agli elementi grafici
+        /// </summary>
+        private void RefreshGridAddGestures()
         {
             _game.Board.Tiles[0][0].GridReference.GestureRecognizers.Clear();
             _game.Board.Tiles[0][0].GridReference.GestureRecognizers.Add(new DragGestureRecognizer());
@@ -207,6 +207,14 @@ namespace org.dgl.win98labyrinth
             ((DragGestureRecognizer)_game.Board.Tiles[0][0].GridReference.GestureRecognizers[0]).DragStarting += (s, e) =>
             {
                 if (_game.CurrentPlayer.HasMovedTile)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                if (!_game.Board.Tiles[0][0].CanGoNorth
+                    && !_game.Board.Tiles[0][0].CanGoSouth
+                    && !_game.Board.Tiles[0][0].CanGoEast
+                    && !_game.Board.Tiles[0][0].CanGoWest)
                 {
                     e.Cancel = true;
                     return;
@@ -230,6 +238,14 @@ namespace org.dgl.win98labyrinth
                 ((DragGestureRecognizer)tile.GridReference.GestureRecognizers[0]).DragStarting += (s, e) =>
                 {
                     if (_game.CurrentPlayer.HasMovedTile)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    if (!tile.CanGoNorth
+                        && !tile.CanGoSouth
+                        && !tile.CanGoEast
+                        && !tile.CanGoWest)
                     {
                         e.Cancel = true;
                         return;
